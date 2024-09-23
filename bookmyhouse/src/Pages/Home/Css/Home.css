@@ -1,0 +1,19 @@
+.home-page-1{
+    background-color:var(--primary-color);
+    height: 100vh;
+}
+
+.home-page-1 .theme-1{
+    background-color: red;
+    
+}
+.home-page-2{
+    background-color: rgb(208, 255, 0);
+    height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+    .home-page-1{
+        overflow-x: hidden;
+    }
+}
