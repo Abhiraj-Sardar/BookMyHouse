@@ -1,19 +1,30 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Data from "../../Utils/Data";
 import Navbar from '../../Components/Navbar';
 import Slider from '@mui/material/Slider';
 import Chip from '@mui/material/Chip';
+import AddIcon from '@mui/icons-material/Add';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Button from '@mui/material/Button';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import SortIcon from '@mui/icons-material/Sort';
+
 import "./Css/Rent.css"
 export const Rent = () => {
 
-
-    const [value1, setValue1] = useState([20, 37]);
-    const [bhk,setBhk]=useState([{BHK:2,status:1},{BHK:3,status:1},{BHK:4,status:1},{BHK:6,status:1},{BHK:8,status:1}])
-    
+    const [data,setData]=useState([...Data]);
+    console.log(data)
+    const [value1, setValue1] = useState([100000, 350000]);
+    const [bhk, setBhk] = useState([{ BHK: 2, status: 0 }, { BHK: 3, status: 0 }, { BHK: 4, status: 0 }, { BHK: 6, status: 0 }, { BHK: 8, status: 0 }])
+    const [amn, setAmn] = useState([{ type: "Parking", status: 0 }, { type: "Gymnasium", status: 0 }, { type: "Park", status: 0 }, { type: "Lift", status: 0 }, { type: "Swimming Pool", status: 0 }, { type: "Club", status: 0 }, { type: "Wifi", status: 0 }, { type: "Security", status: 0 }]);
+    const [locations, setLocations] = useState([{ loc: "kolkata", status: 0 }, { loc: "Bengaluru", status: 0 }, { loc: "Chennai", status: 0 }, { loc: "New Delhi", status: 0 }, { loc: "Puducherry", status: 0 }, { loc: "kollam", status: 0 }, { loc: "Ludhiana", status: 0 }, { loc: "Jalandhar", status: 0 }])
+    const [sqftValue, setSqftValue] = useState([0, 1000]);
 
     const minDistance = 90000;
-
-    const result={};
+    const minSqftDistance = 1000;
+    const filters = {};
 
     function valuetext(value) {
         return `${value}°C`;
@@ -21,25 +32,76 @@ export const Rent = () => {
 
     const handleChange1 = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
-          return;
+            return;
         }
-    
+
         if (activeThumb === 0) {
-          setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
+            setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
         } else {
-          setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
+            setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
         }
-      };
-    
-      const handleChip=(obj,idx)=>{
-        bhk[idx]["status"]=0;
-        setBhk([...bhk]);     
-      }
+    };
+
+    const handleChip = (obj, idx) => {
+        bhk[idx]["status"] = 1;
+        setBhk([...bhk]);
+    }
+
+    const deleteChip = (obj, idx) => {
+        bhk[idx]["status"] = 0;
+        setBhk([...bhk]);
+    }
+
+    const handleAmenities = (obj, idx) => {
+        amn[idx]["status"] = 1;
+        setAmn([...amn]);
+
+    }
+
+    const deleteAmenities = (obj, idx) => {
+        amn[idx]["status"] = 0;
+        setAmn([...amn]);
+    }
+
+    function valuetext2(value) {
+        return `${value}°C`;
+    }
+
+    const handleSqft = (event, newValue, activeThumb) => {
+
+        if (!Array.isArray(newValue)) {
+            return;
+        }
+
+        if (activeThumb === 0) {
+            setSqftValue([Math.min(newValue[0], sqftValue[1] - minSqftDistance), sqftValue[1]]);
+        } else {
+            setSqftValue([sqftValue[0], Math.max(newValue[1], sqftValue[0] + minSqftDistance)]);
+        }
+    }
+
+    const handleLocation=(obj,idx)=>{
+        if(locations[idx]["status"]==0){
+            locations[idx]["status"]=1;
+            setLocations([...locations]);
+        }else{
+            locations[idx]["status"]=0;
+            setLocations([...locations]);
+        }
+        // console.log(locations);
+    }
+
+    const handleSubmit=()=>{
+        console.log(value1);
+        console.log(bhk);
+        console.log(amn);
+        console.log(locations);
+        console.log(sqftValue);
+    }
 
     return (
         <div className="container-fluid rent-page">
             <Navbar />
-
             <div className="container">
                 <div className="row">
                     <div className="col-3 filters">
@@ -50,53 +112,127 @@ export const Rent = () => {
                         <h5>Budget</h5>
                         <div>
                             <Slider
-                            getAriaLabel={() => 'Minimum distance'}
-                            value={value1}
-                            onChange={handleChange1}
-                            valueLabelDisplay="auto"
-                            getAriaValueText={valuetext}
-                            min={10000}
-                            max={1500000}
-                            disableSwap
-                            sx={{color:"var(--secondary-color)"}}
-                        />
+                                getAriaLabel={() => 'Minimum distance'}
+                                value={value1}
+                                onChange={handleChange1}
+                                valueLabelDisplay="auto"
+                                getAriaValueText={valuetext}
+                                min={10000}
+                                max={1500000}
+                                disableSwap
+                                sx={{ color: "var(--secondary-color)" }}
+                            />
                         </div>
 
                         <h5>No of Bedrooms</h5>
-                        <div style={{display:"flex",flexWrap:"wrap",gap:"2px"}}>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "2px" }}>
                             {
-                                bhk.map((b,i)=>{
-                                    return(
-                                        (b["status"]===1)
-                                        ?
-                                        (<Chip key={i} 
-                                            label={`${b["BHK"]}BHK`} 
-                                            clickable={true} 
-                                            variant="outlined" 
-                                            onClick={()=>{handleChip(b,i)}} 
+                                bhk.map((b, i) => {
+                                    return (
+                                        (b["status"] === 0)
+                                            ?
+                                            (<Chip key={i}
+                                                label={`${b["BHK"]}BHK`}
+                                                clickable={true}
+                                                variant="outlined"
+                                                sx={{ borderColor: "var(--secondary-color)" }}
+                                                onClick={() => { handleChip(b, i) }}
                                             />)
-                                        :
-                                        (<Chip label="Deletable" onDelete={()=>{}}/>)
-                                        
+                                            :
+                                            (<Chip label={`${b["BHK"]}BHK`}
+                                                sx={{ backgroundColor: "var(--secondary-color)", color: "var(--primary-color)" }}
+                                                onDelete={() => { deleteChip(b, i) }} />)
+
                                     )
                                 })
                             }
                         </div>
                         <br />
                         <h5>Amenities</h5>
-                        <div style={{display:"flex",flexWrap:"wrap",gap:"2px"}}>
-                            
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "2px" }}>
+                            {
+                                amn.map((amenity, i) => {
+                                    return (
+                                        (amenity["status"] === 0)
+                                            ?
+                                            (<Chip key={i}
+                                                label={`+ ${amenity["type"]}`}
+                                                clickable={true}
+                                                variant="outlined"
+                                                sx={{ borderColor: "var(--secondary-color)" }}
+                                                onClick={() => { handleAmenities(amenity, i) }}
+                                            />)
+                                            :
+                                            (<Chip label={`${amenity["type"]}`}
+                                                sx={{ backgroundColor: "var(--secondary-color)", color: "var(--primary-color)" }}
+                                                onDelete={() => { deleteAmenities(amenity, i) }} />)
+
+                                    )
+                                })
+                            }
                         </div>
                         <br />
 
                         <h5>Location</h5>
-                        <div style={{display:"flex",flexWrap:"wrap",gap:"2px"}}>
-                           
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "2px" }}>
+
+                            {
+                                locations.map((location, i) => {
+                                    return (
+                                        <FormControlLabel
+                                            key={i}
+                                            control={<Checkbox sx={{
+                                                color: "var(--secondary-color)",
+                                                '&.Mui-checked': {
+                                                    color: "var(--secondary-color)",
+                                                },
+                                            }} />}
+                                            value={location["status"]}
+                                            label={`${location["loc"]}`}
+                                            onClick={()=>{handleLocation(location,i)}}
+                                        />
+                                    )
+                                })
+                            }
+
+
+
+                        </div>
+                            <br />
+                        <h5>Area in Sqft</h5>
+
+                        <div>
+                            <Slider
+                                getAriaLabel={() => 'Minimum distance'}
+                                value={sqftValue}
+                                onChange={handleSqft}
+                                valueLabelDisplay="auto"
+                                getAriaValueText={valuetext2}
+                                min={0}
+                                max={4000}
+                                disableSwap
+                                sx={{ color: "var(--secondary-color)" }}
+                            />
                         </div>
 
-                    </div>
-                    <div className="col-9 property-data">
+                        <h1 style={{ textAlign: "center" }}>
+                            <Button variant="contained"
+                                startIcon={<FilterListIcon />}
+                                sx={{ backgroundColor: "var(--secondary-color)" }}
+                                onClick={handleSubmit}
+                            >
+                                Apply Filter
+                            </Button>
+                        </h1>
 
+                    </div>
+                    <div className="col-9 property-data-container">
+                            <h4 style={{marginTop:"1rem"}}>
+                                1200 Property Found
+                            </h4>
+                            <div className="property-data">
+
+                            </div>
                     </div>
                 </div>
             </div>
