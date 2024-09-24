@@ -1,0 +1,18 @@
+.rent-page{
+    /* background-color: red; */
+    height:120vh;
+}
+
+.rent-page .filters{
+    border:2px solid var(--secondary-color);
+    border-radius: 10px;
+    height: calc(90vh - 20px);
+}
+
+.filters h2{
+    color: var(--secondary-color);
+}
+
+.rent-page .property-data{
+    background-color: aliceblue;
+}
