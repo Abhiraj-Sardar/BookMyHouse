@@ -14,5 +14,12 @@
 }
 
 .rent-page .property-data-container{
-    background-color: rgb(39, 120, 192);
+    /* background-color: rgb(39, 120, 192); */
+}
+
+.rent-page .property-data{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1rem;
+    /* background-color: red; */
 }

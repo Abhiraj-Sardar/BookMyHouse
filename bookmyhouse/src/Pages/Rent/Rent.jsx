@@ -10,12 +10,14 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SortIcon from '@mui/icons-material/Sort';
+import Card from '../../Components/Card';
 
 import "./Css/Rent.css"
-export const Rent = () => {
 
-    const [data,setData]=useState([...Data]);
-    console.log(data)
+export const Rent = () => {
+    const [data, setData] = useState(Data);
+    const [result, setResult] = useState(Data);
+    
     const [value1, setValue1] = useState([100000, 350000]);
     const [bhk, setBhk] = useState([{ BHK: 2, status: 0 }, { BHK: 3, status: 0 }, { BHK: 4, status: 0 }, { BHK: 6, status: 0 }, { BHK: 8, status: 0 }])
     const [amn, setAmn] = useState([{ type: "Parking", status: 0 }, { type: "Gymnasium", status: 0 }, { type: "Park", status: 0 }, { type: "Lift", status: 0 }, { type: "Swimming Pool", status: 0 }, { type: "Club", status: 0 }, { type: "Wifi", status: 0 }, { type: "Security", status: 0 }]);
@@ -24,7 +26,13 @@ export const Rent = () => {
 
     const minDistance = 90000;
     const minSqftDistance = 1000;
-    const filters = {};
+    const [filters, setFilters] = useState({
+        budget: [...value1],
+        bhk: [undefined],
+        amn: [undefined],
+        loc: [undefined],
+        sqft: [sqftValue]
+    });
 
     function valuetext(value) {
         return `${value}°C`;
@@ -40,27 +48,69 @@ export const Rent = () => {
         } else {
             setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
         }
+
+        filters["budget"] = [...value1];
+        setFilters({ ...filters });
+        // console.log(filters);
     };
 
     const handleChip = (obj, idx) => {
         bhk[idx]["status"] = 1;
         setBhk([...bhk]);
+        var b=[]
+        bhk.filter((obj) => {
+            if (obj.status == 1) {
+                b.push(obj.BHK);
+                return true
+            }
+        });
+
+        filters["bhk"]=[...b];
+
+        setFilters({ ...filters })
+
+        console.log(filters)
+
     }
 
     const deleteChip = (obj, idx) => {
         bhk[idx]["status"] = 0;
         setBhk([...bhk]);
+
+        filters["bhk"] = bhk.filter((obj) => {
+            if (obj.status == 1) {
+                return true
+            }
+        });
+        setFilters({ ...filters })
+        // console.log(filters);
+
     }
 
     const handleAmenities = (obj, idx) => {
         amn[idx]["status"] = 1;
         setAmn([...amn]);
 
+        filters["amn"] = amn.filter((obj) => {
+            if (obj.status == 1) {
+                return true
+            }
+        });
+        setFilters({ ...filters });
+        // console.log(filters)
+
     }
 
     const deleteAmenities = (obj, idx) => {
         amn[idx]["status"] = 0;
         setAmn([...amn]);
+        filters["amn"] = amn.filter((obj) => {
+            if (obj.status == 1) {
+                return true
+            }
+        });
+        setFilters({ ...filters })
+        // console.log(filters)
     }
 
     function valuetext2(value) {
@@ -78,26 +128,50 @@ export const Rent = () => {
         } else {
             setSqftValue([sqftValue[0], Math.max(newValue[1], sqftValue[0] + minSqftDistance)]);
         }
+        filters["sqft"] = [...sqftValue];
+        setFilters({ ...filters });
+        // console.log(filters);
     }
 
-    const handleLocation=(obj,idx)=>{
-        if(locations[idx]["status"]==0){
-            locations[idx]["status"]=1;
-            setLocations([...locations]);
-        }else{
-            locations[idx]["status"]=0;
-            setLocations([...locations]);
+    const handleLocation = (obj, idx) => {
+
+        if (locations[idx]["status"] == 0) {
+            locations[idx]["status"] = 1;
+        } else {
+            locations[idx]["status"] = 0;
         }
-        // console.log(locations);
+
+        setLocations([...locations]);
+
+        
+        filters["loc"] = locations.filter((obj) => {
+            if (obj.status == 1) {
+                return true
+            }
+        });
+
+        setFilters({ ...filters })
+        // console.log(filters);
     }
 
-    const handleSubmit=()=>{
-        console.log(value1);
-        console.log(bhk);
-        console.log(amn);
-        console.log(locations);
-        console.log(sqftValue);
+    const handleSubmit = () => {
+        
+        setResult([...Data]);
+        console.log(result);
+
+        const demo = Data.filter((obj) => {
+            
+            const budget=((obj.price >= filters["budget"][0]) && (obj.price <= filters["budget"][1]))
+            const bhk= !filters["bhk"][0] ||  filters["bhk"].includes(obj.bhk)
+            return (budget && bhk)
+                
+        })
+
+        
+        setResult(demo);
+       
     }
+    
 
     return (
         <div className="container-fluid rent-page">
@@ -189,7 +263,7 @@ export const Rent = () => {
                                             }} />}
                                             value={location["status"]}
                                             label={`${location["loc"]}`}
-                                            onClick={()=>{handleLocation(location,i)}}
+                                            onClick={() => { handleLocation(location, i) }}
                                         />
                                     )
                                 })
@@ -198,7 +272,7 @@ export const Rent = () => {
 
 
                         </div>
-                            <br />
+                        <br />
                         <h5>Area in Sqft</h5>
 
                         <div>
@@ -227,12 +301,35 @@ export const Rent = () => {
 
                     </div>
                     <div className="col-9 property-data-container">
-                            <h4 style={{marginTop:"1rem"}}>
-                                1200 Property Found
-                            </h4>
-                            <div className="property-data">
+                        <h4 style={{ marginTop: "1rem" }}>
+                            1200 Property Found
+                        </h4>
+                        <div className="property-data">
+                            {   
+                                (result.length>0)?(
+                                result.map((data, i) => {
+                                    return (
+                                        
+                                        <Card key={data.id}
+                                            img={data.img}
+                                            title={data.title}
+                                            desc={data.desc}
+                                            agent={data.agent}
+                                            bedrooms={data.bedrooms}
+                                            price={data.price}
+                                            amenity={data.amenity}
+                                            bhk={data.bhk}
+                                            location={data.location}
+                                            area={data.area}
+                                            date={data.date}
+                                        />
+                                    )
+                                })
+                            ):(<p>No Properties to Display</p>)
+                            }
 
-                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>

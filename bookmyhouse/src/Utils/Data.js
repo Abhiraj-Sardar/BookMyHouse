@@ -15,7 +15,7 @@ const Data=[
     },
     {
         id: 2,
-        img: "https://media.istockphoto.com/id/1848310587/photo/luxury-apartments-in-downtown.webp?a=2&b=2&s=612x612&w=0&k=20&c=Oc6f95y2MR5XpMYckFdVleT2IgAQOxv6keYzFZQyguU=",
+        img:"https://media.istockphoto.com/id/2076934092/photo/apartment-building-with-autumn-trees-landscape.webp?a=1&b=1&s=612x612&w=0&k=20&c=X8qclT0IkDiCHyiVBRF0blEKheddt2K_Fdc08_HnTrE=",
         title: "Greenwood Residency",
         desc: "2 BHK flat in Greenwood Residency",
         agent: "Rohit Verma",
@@ -29,7 +29,7 @@ const Data=[
     },
     {
         id: 3,
-        img: "https://media.istockphoto.com/id/1757458177/photo/apartment-building-in-downtown.webp?a=3&b=3&s=612x612&w=0&k=20&c=wB_z0DWWKK2QpM7Yqug1_W9kWVaLsWSQ2IfHsP4NybM=",
+        img:"https://media.istockphoto.com/id/1440568749/photo/modern-apartment-buildings-in-the-evening.webp?a=1&b=1&s=612x612&w=0&k=20&c=EYdMWmiSmxQXoWaRdxpqEBTOPWzLKiqlWK3b_prexOQ=",
         title: "Sunrise Apartments",
         desc: "1 BHK flat in Sunrise Apartments",
         agent: "Pooja Singh",
@@ -43,7 +43,7 @@ const Data=[
     },
     {
         id: 4,
-        img: "https://media.istockphoto.com/id/1951253065/photo/modern-apartment-buildings-at-night.webp?a=4&b=4&s=612x612&w=0&k=20&c=kgfDd6aSvUEqdzT9egFMnmyMDvzoGHlkEr6t5TlIW58=",
+        img: "https://images.unsplash.com/photo-1578055384140-5d8a31f5833f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmxhdHN8ZW58MHx8MHx8fDA%3D",
         title: "Heights Residency",
         desc: "4 BHK flat in Heights Residency",
         agent: "Amit Roy",
@@ -57,7 +57,7 @@ const Data=[
     },
     {
         id: 5,
-        img: "https://media.istockphoto.com/id/1830320216/photo/modern-apartment-building-in-the-evening.webp?a=5&b=5&s=612x612&w=0&k=20&c=70i4cfyL4KxAjZ9yDGSIDTOBwYsQPiHf20FvlbFGnoM=",
+        img: "https://plus.unsplash.com/premium_photo-1671196048754-03a77d051dcb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZmxhdHN8ZW58MHx8MHx8fDA%3D",
         title: "Blue Horizon",
         desc: "3 BHK flat in Blue Horizon",
         agent: "Manish Sharma",
@@ -71,7 +71,7 @@ const Data=[
     },
     {
         id: 6,
-        img: "https://media.istockphoto.com/id/1845377036/photo/luxury-apartments-in-sunset.webp?a=6&b=6&s=612x612&w=0&k=20&c=YrMhPqaWYFw8lLCp_5_h1Yp7TQc_sTx_izboOXCG9Qo=",
+        img: "https://plus.unsplash.com/premium_photo-1664267475555-d0f774fc534a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZsYXRzfGVufDB8fDB8fHww",
         title: "Orchid Residency",
         desc: "2 BHK flat in Orchid Residency",
         agent: "Neha Gupta",
@@ -85,7 +85,7 @@ const Data=[
     },
     {
         id: 7,
-        img: "https://media.istockphoto.com/id/1963871736/photo/modern-apartment-buildings-at-dusk.webp?a=7&b=7&s=612x612&w=0&k=20&c=Fh7bEZjT3DZcnAYrC2L14el3zwuFVkCBqiFyoN5FS24=",
+        img: "https://media.istockphoto.com/id/1444750023/photo/high-rise-apartments-or-building-luxury-apartments-or-building-society.jpg?s=612x612&w=0&k=20&c=D0Dy3KSe3-Ttptk0wZP1ivwmdVz7byePIbfqjnUJhEE=",
         title: "Maple Woods",
         desc: "3 BHK flat in Maple Woods",
         agent: "Vikas Tiwari",
@@ -99,7 +99,7 @@ const Data=[
     },
     {
         id: 8,
-        img: "https://media.istockphoto.com/id/1925865357/photo/apartment-buildings-in-dusk.webp?a=8&b=8&s=612x612&w=0&k=20&c=xNFOquSMYiD0M2X7yT5FZdpJHNsO_nJ0lhz5fnRTsM4=",
+        img: "https://media.istockphoto.com/id/1223059837/photo/cityscape-of-a-modern-residential-area-with-apartment-buildings-new-green-urban-landscape-in.jpg?s=612x612&w=0&k=20&c=UWmzWnHmiLmBF32B6KaNl9acntTWGFrZgjidWat8UXo=",
         title: "Silver Crest",
         desc: "2 BHK flat in Silver Crest",
         agent: "Ankita Bose",
@@ -113,7 +113,7 @@ const Data=[
     },
     {
         id: 9,
-        img: "https://media.istockphoto.com/id/1925865357/photo/new-residential-apartment-buildings.webp?a=9&b=9&s=612x612&w=0&k=20&c=ILlCTwRDb09AqFfbFpijVx4lXBltDbr6oG2wZbDwuyE=",
+        img: "https://media.istockphoto.com/id/1357037904/photo/night-scene-modern-living-room-with-metropolis-view-background-3d-render.jpg?s=612x612&w=0&k=20&c=yEgNdJTppFayIiiXyiCLGLH9g9Ro6Oiv2DLUxUduS5w=",
         title: "Royal Palms",
         desc: "4 BHK flat in Royal Palms",
         agent: "Nitin Malhotra",
@@ -127,7 +127,7 @@ const Data=[
     },
     {
         id: 10,
-        img: "https://media.istockphoto.com/id/1913024179/photo/modern-apartment-buildings-in-city.webp?a=10&b=10&s=612x612&w=0&k=20&c=ES_aA7W_jrAVS_W7BoFNDflAcdbUj4MYcWqTk-JmIx4=",
+        img: "https://media.istockphoto.com/id/1346322259/photo/sunset-during-pandemic-in-gurgaon-city-urban-skyline-on-september-04-delhi-ncrs.jpg?s=612x612&w=0&k=20&c=QirxFxVrDO-2XclqRcwIYx6CpG0ocNeqDStFmynbtRw=",
         title: "Emerald Greens",
         desc: "3 BHK flat in Emerald Greens",
         agent: "Priya Sen",
