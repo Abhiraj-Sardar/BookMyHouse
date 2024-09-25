@@ -17,12 +17,12 @@ const Navbar = () => {
             
             >BookMyHouse</Button>
             <ul className={isOpen ? "nav-links nav-active" : "nav-links"}>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Buy</a></li>
-                <li><a href="#services">Rent</a></li>
-                <li><a href="#contact">Sell</a></li>
-                <li><a href="#contact">Development</a></li>
-                <li><a href="#contact">Agents</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/rent">Buy</a></li>
+                <li><a href="/rent">Rent</a></li>
+                <li><a href="/rent">Sell</a></li>
+                <li><a href="/rent">Development</a></li>
+                <li><a href="/rent">Agents</a></li>
                 
                 <Button 
                 variant="contained"

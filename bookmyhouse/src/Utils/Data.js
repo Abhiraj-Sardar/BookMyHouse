@@ -8,7 +8,7 @@ const Data=[
         bedrooms:3,
         price:120000,
         amenity:["Park","Lift"],
-        location:"kolkata",
+        location:"Kolkata",
         bhk:3,
         area:838,
         date:"12-09-2024"

@@ -8,7 +8,11 @@
     border-radius: 10px;
     height: calc(113vh - 20px);
 }
-
+.rent-page .cart{
+    position: absolute;
+    right:16rem;
+    cursor: pointer;
+}
 .filters h2{
     color: var(--secondary-color);
 }

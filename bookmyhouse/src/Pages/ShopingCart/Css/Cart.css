@@ -1,0 +1,9 @@
+.cart-page{
+    height:100vh;
+    /* background-color: red; */
+}
+
+.cart-page h1{
+    color:var(--secondary-color);
+    text-align: center;
+}

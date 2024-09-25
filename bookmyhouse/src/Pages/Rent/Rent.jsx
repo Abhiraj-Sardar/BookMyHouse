@@ -10,18 +10,25 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SortIcon from '@mui/icons-material/Sort';
-import Card from '../../Components/Card';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
 
+import Card from '../../Components/Card';
+import { useContext } from 'react';
+import { Cart } from '../../CartContext';
 import "./Css/Rent.css"
 
 export const Rent = () => {
+
+    const cart=useContext(Cart);
+    console.log(cart);
     const [data, setData] = useState(Data);
     const [result, setResult] = useState(Data);
-    
+
     const [value1, setValue1] = useState([100000, 350000]);
     const [bhk, setBhk] = useState([{ BHK: 2, status: 0 }, { BHK: 3, status: 0 }, { BHK: 4, status: 0 }, { BHK: 6, status: 0 }, { BHK: 8, status: 0 }])
     const [amn, setAmn] = useState([{ type: "Parking", status: 0 }, { type: "Gymnasium", status: 0 }, { type: "Park", status: 0 }, { type: "Lift", status: 0 }, { type: "Swimming Pool", status: 0 }, { type: "Club", status: 0 }, { type: "Wifi", status: 0 }, { type: "Security", status: 0 }]);
-    const [locations, setLocations] = useState([{ loc: "kolkata", status: 0 }, { loc: "Bengaluru", status: 0 }, { loc: "Chennai", status: 0 }, { loc: "New Delhi", status: 0 }, { loc: "Puducherry", status: 0 }, { loc: "kollam", status: 0 }, { loc: "Ludhiana", status: 0 }, { loc: "Jalandhar", status: 0 }])
+    const [locations, setLocations] = useState([{ loc: "Kolkata", status: 0 }, { loc: "Bengaluru", status: 0 }, { loc: "Chennai", status: 0 }, { loc: "New Delhi", status: 0 }, { loc: "Puducherry", status: 0 }, { loc: "Kollam", status: 0 }, { loc: "Ludhiana", status: 0 }, { loc: "Jalandhar", status: 0 }])
     const [sqftValue, setSqftValue] = useState([0, 1000]);
 
     const minDistance = 90000;
@@ -31,7 +38,7 @@ export const Rent = () => {
         bhk: [undefined],
         amn: [undefined],
         loc: [undefined],
-        sqft: [sqftValue]
+        sqft: [...sqftValue]
     });
 
     function valuetext(value) {
@@ -57,7 +64,7 @@ export const Rent = () => {
     const handleChip = (obj, idx) => {
         bhk[idx]["status"] = 1;
         setBhk([...bhk]);
-        var b=[]
+        var b = []
         bhk.filter((obj) => {
             if (obj.status == 1) {
                 b.push(obj.BHK);
@@ -65,7 +72,7 @@ export const Rent = () => {
             }
         });
 
-        filters["bhk"]=[...b];
+        filters["bhk"] = [...b];
 
         setFilters({ ...filters })
 
@@ -90,12 +97,14 @@ export const Rent = () => {
     const handleAmenities = (obj, idx) => {
         amn[idx]["status"] = 1;
         setAmn([...amn]);
-
-        filters["amn"] = amn.filter((obj) => {
+        var a = [];
+        amn.filter((obj) => {
             if (obj.status == 1) {
+                a.push(obj.type);
                 return true
             }
         });
+        filters["amn"] = [...a];
         setFilters({ ...filters });
         // console.log(filters)
 
@@ -142,41 +151,53 @@ export const Rent = () => {
         }
 
         setLocations([...locations]);
+        var l = [];
 
-        
-        filters["loc"] = locations.filter((obj) => {
+        locations.filter((obj) => {
             if (obj.status == 1) {
+                l.push(obj.loc);
                 return true
             }
         });
 
+        filters["loc"] = [...l];
         setFilters({ ...filters })
         // console.log(filters);
     }
 
+
+    // 
     const handleSubmit = () => {
-        
+
         setResult([...Data]);
         console.log(result);
 
         const demo = Data.filter((obj) => {
-            
-            const budget=((obj.price >= filters["budget"][0]) && (obj.price <= filters["budget"][1]))
-            const bhk= !filters["bhk"][0] ||  filters["bhk"].includes(obj.bhk)
-            return (budget && bhk)
-                
+
+            const budget = ((obj.price >= filters["budget"][0]) && (obj.price <= filters["budget"][1]))
+            const bedroom = !filters["bhk"][0] || filters["bhk"].includes(obj.bhk)
+            const amenities = !filters["amn"][0] || filters["amn"].includes(obj.amenity[0])
+            const address = !filters["loc"][0] || filters["loc"].includes(obj.location)
+            const squareFeet = ((obj.area >= filters["sqft"][0]) && (obj.area <= filters["sqft"][1]))
+            return (budget && bedroom && amenities && address && squareFeet)
+
         })
 
-        
+
         setResult(demo);
-       
+
     }
-    
+
 
     return (
         <div className="container-fluid rent-page">
             <Navbar />
             <div className="container">
+                <Badge badgeContent={(cart.cart).length} 
+                    className='cart'
+                    color="primary">
+                    <a href='/cart'><ShoppingCartIcon color="action" /></a>
+                </Badge>
                 <div className="row">
                     <div className="col-3 filters">
                         <br />
@@ -302,30 +323,30 @@ export const Rent = () => {
                     </div>
                     <div className="col-9 property-data-container">
                         <h4 style={{ marginTop: "1rem" }}>
-                            1200 Property Found
+                            {result.length} Property Found
                         </h4>
                         <div className="property-data">
-                            {   
-                                (result.length>0)?(
-                                result.map((data, i) => {
-                                    return (
-                                        
-                                        <Card key={data.id}
-                                            img={data.img}
-                                            title={data.title}
-                                            desc={data.desc}
-                                            agent={data.agent}
-                                            bedrooms={data.bedrooms}
-                                            price={data.price}
-                                            amenity={data.amenity}
-                                            bhk={data.bhk}
-                                            location={data.location}
-                                            area={data.area}
-                                            date={data.date}
-                                        />
-                                    )
-                                })
-                            ):(<p>No Properties to Display</p>)
+                            {
+                                (result.length > 0) ? (
+                                    result.map((data, i) => {
+                                        return (
+
+                                            <Card key={data.id}
+                                                img={data.img}
+                                                title={data.title}
+                                                desc={data.desc}
+                                                agent={data.agent}
+                                                bedrooms={data.bedrooms}
+                                                price={data.price}
+                                                amenity={data.amenity}
+                                                bhk={data.bhk}
+                                                location={data.location}
+                                                area={data.area}
+                                                date={data.date}
+                                            />
+                                        )
+                                    })
+                                ) : (<p>No Properties to Display</p>)
                             }
 
 
