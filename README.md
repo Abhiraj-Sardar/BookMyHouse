@@ -10,6 +10,18 @@ combines coding, UI design, logical thinking, user interaction, and critical pro
 + MaterialUI
 + Vanilla CSS
 
+# Live View
+You can see the it Live at : https://bookmyhouse.netlify.app/
+
+![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/home.png)
+![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/home2.png)
+![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/home3.png)
+![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/rent.png)
+![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/rent2.png)
+![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/cart.png)
+![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/payment.png)
+
+
 # SetUp
 
 To set up the project change the directory to BookMyHouse, by writing the  following cmd
