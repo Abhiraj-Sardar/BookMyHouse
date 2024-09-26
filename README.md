@@ -11,7 +11,7 @@ combines coding, UI design, logical thinking, user interaction, and critical pro
 + Vanilla CSS
 
 # Live View
-You can see the it Live at : https://bookmyhouse.netlify.app/
+You can see it Live at: https://bookmyhouse.netlify.app/
 
 ![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/home.png)
 ![](https://github.com/Abhiraj-Sardar/BookMyHouse/blob/master/Output/home2.png)
