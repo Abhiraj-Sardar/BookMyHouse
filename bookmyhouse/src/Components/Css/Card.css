@@ -1,7 +1,7 @@
 .card {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 18rem;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -72,9 +72,9 @@ strong {
     background-color: #218838;
 }
 
-@media (min-width: 600px) {
+@media screen and (max-width: 768px){
     .card {
-        width: 400px;
+        width:20rem;
     }
 
     .property-title {

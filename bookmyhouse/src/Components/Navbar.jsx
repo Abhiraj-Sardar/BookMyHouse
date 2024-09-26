@@ -1,42 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import "./Css/Navbar.css";
+import { NavLink } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
+    // Function to toggle the navbar open/close state
     const toggleNavbar = () => {
-        setIsOpen(!isOpen);
+        setIsOpen((prev) => !prev); 
+        var nav=document.querySelector(".nav-links");
+        nav.style.transform="translateX(0%)";
+    };
+
+    const pushNavbar=()=>{
+        
+        var nav=document.querySelector(".nav-links");
+        nav.style.transform="translateX(110%)";
+    }
+    // Function to close the navbar when a link is clicked
+    const closeNavbar = () => {
+        setIsOpen(false);
     };
 
     return (
         <nav className="navbar container">
             <Button 
-            variant="outlined"
-            sx={{border:"1px solid var(--secondary-color)"}}
+                variant="outlined"
+                sx={{border: "1px solid var(--secondary-color)"}}
+            >
+                BookMyHouse
+            </Button>
             
-            >BookMyHouse</Button>
-            <ul className={isOpen ? "nav-links nav-active" : "nav-links"}>
-                <li><a href="/">Home</a></li>
-                <li><a href="/rent">Buy</a></li>
-                <li><a href="/rent">Rent</a></li>
-                <li><a href="/rent">Sell</a></li>
-                <li><a href="/rent">Development</a></li>
-                <li><a href="/rent">Agents</a></li>
-                
+            <ul className="nav-links">
+                <CloseIcon
+                onClick={pushNavbar}
+                className="close"
+                sx={{position:"absolute",top:"0.5rem",right:"0.5rem"}}
+                />
+                <li>
+                    <NavLink exact to="/" activeClassName="active-link" onClick={closeNavbar}>Home</NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/rent" activeClassName="active-link" onClick={closeNavbar}>Buy</NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/rent" activeClassName="active-link" onClick={closeNavbar}>Rent</NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/rent" activeClassName="active-link" onClick={closeNavbar}>Sell</NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/rent" activeClassName="active-link" onClick={closeNavbar}>Development</NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/rent" activeClassName="active-link" onClick={closeNavbar}>Agents</NavLink>
+                </li>
                 <Button 
-                variant="contained"
-                sx={{ mt: 1, ml: 2.5,backgroundColor:"var(--dark-color)" }}
+                    variant="contained"
+                    sx={{ mt: 1, ml: 2.5, backgroundColor: "var(--dark-color)" }}
+                    onClick={closeNavbar}
                 >
                     Register
                 </Button>
-                
-
             </ul>
             <div className="burger" onClick={toggleNavbar}>
-                <div className={isOpen ? "line1 toggle" : "line1"}></div>
-                <div className={isOpen ? "line2 toggle" : "line2"}></div>
-                <div className={isOpen ? "line3 toggle" : "line3"}></div>
+                <MenuIcon/>
             </div>
         </nav>
     );

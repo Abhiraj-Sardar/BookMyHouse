@@ -4,6 +4,8 @@ import Navbar from '../../Components/Navbar'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Theme2 } from '../../Components/Theme2';
+import { Theme1 } from '../../Components/Theme1';
+import { Footer } from '../../Components/Footer';
 export const Home = () => {
     return (
         <div>
@@ -40,15 +42,11 @@ export const Home = () => {
                         </div>
                     </div>
             </div>
-            <div className="home-page-2">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-12">
-                                <Theme2/>
-                            </div>
-                        </div>
-                    </div>
+            <br />
+            <div className="home-page-3">
+                <Theme1/>
             </div>
+            <Footer/>
         </div>
     )
 }

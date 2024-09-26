@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import Data from "../../Utils/Data";
 import Navbar from '../../Components/Navbar';
 import Slider from '@mui/material/Slider';
 import Chip from '@mui/material/Chip';
-import AddIcon from '@mui/icons-material/Add';
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import SortIcon from '@mui/icons-material/Sort';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-
+import { NavLink } from 'react-router-dom';
 import Card from '../../Components/Card';
 import { useContext } from 'react';
 import { Cart } from '../../CartContext';
@@ -20,8 +17,8 @@ import "./Css/Rent.css"
 
 export const Rent = () => {
 
-    const cart=useContext(Cart);
-    console.log(cart);
+    const cart = useContext(Cart);
+    // console.log(cart);
     const [data, setData] = useState(Data);
     const [result, setResult] = useState(Data);
 
@@ -193,10 +190,12 @@ export const Rent = () => {
         <div className="container-fluid rent-page">
             <Navbar />
             <div className="container">
-                <Badge badgeContent={(cart.cart).length} 
+                <Badge badgeContent={(cart.cart).length}
                     className='cart'
                     color="primary">
-                    <a href='/cart'><ShoppingCartIcon color="action" /></a>
+                    <NavLink exact to="/cart" activeClassName="active-link">
+                        <ShoppingCartIcon color="action" />
+                    </NavLink>
                 </Badge>
                 <div className="row">
                     <div className="col-3 filters">
@@ -331,7 +330,9 @@ export const Rent = () => {
                                     result.map((data, i) => {
                                         return (
 
-                                            <Card key={data.id}
+                                            <Card
+                                                key={i}
+                                                id={data.id}
                                                 img={data.img}
                                                 title={data.title}
                                                 desc={data.desc}

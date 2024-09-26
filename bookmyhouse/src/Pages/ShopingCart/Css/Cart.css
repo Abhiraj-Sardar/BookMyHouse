@@ -1,9 +1,16 @@
 .cart-page{
     height:100vh;
     /* background-color: red; */
+    
 }
 
 .cart-page h1{
     color:var(--secondary-color);
     text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .cart-page{
+        overflow-x: hidden;
+    }
 }

@@ -1,0 +1,16 @@
+.process-btn-container{
+    /* background-color: aliceblue; */
+    display: flex;
+    margin-top: 12px;
+}
+
+.cart-data-display{
+    /* background-color: aliceblue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(60vh - 10px);
+}
+
+

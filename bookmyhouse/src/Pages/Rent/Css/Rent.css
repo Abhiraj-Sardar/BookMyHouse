@@ -6,7 +6,8 @@
 .rent-page .filters{
     border:2px solid var(--secondary-color);
     border-radius: 10px;
-    height: calc(113vh - 20px);
+    height: max-content;
+    /* display: none; */
 }
 .rent-page .cart{
     position: absolute;
@@ -26,4 +27,27 @@
     flex-wrap: wrap;
     gap:1rem;
     /* background-color: red; */
+}
+
+@media screen and (max-width: 768px){
+    .rent-page{
+        overflow-x: hidden;
+        /* background-color: red; */
+    }
+    
+    .rent-page .filters{
+        display: none;
+    }
+    .rent-page .property-data{
+        display: flex;
+        flex-wrap: wrap;
+        gap:1rem;
+        /* background-color: red; */
+        width:190%;
+    }
+
+    .rent-page .cart{
+        position: sticky;
+        
+    }
 }

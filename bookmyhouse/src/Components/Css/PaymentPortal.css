@@ -1,0 +1,53 @@
+.payment-container {
+    background-color: #fff;
+    
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 350px;
+    height:30rem;
+    text-align: center;
+  }
+  
+  /* Payment form title */
+  .payment-container .payment-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  /* Form group styling */
+  .payment-container .payment-form form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  /* Label styling */
+  .payment-container .payment-form form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 14px;
+  }
+  
+  input{
+    height:3rem;
+  }
+
+  input::placeholder{
+    font-size: small;
+  }
+
+  /* Input field styling */
+  .payment-container .payment-form form .form-group .payment-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+  }  
+
+  @media screen and (max-width: 768px) {
+    .payment-container {
+        margin-top:10rem;
+        height: 70vh;
+    }
+  }

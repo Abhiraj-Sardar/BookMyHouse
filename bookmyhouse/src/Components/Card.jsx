@@ -3,14 +3,15 @@ import Button from '@mui/material/Button';
 import { useContext } from 'react';
 import { Cart } from '../CartContext';
 
-import "../Components/Css/Card.css";
+import "./Css/Card.css";
+
 const Card = (props) => {
     const cart=useContext(Cart);
     const [disable,setDisable]=useState(false);
     const handleClick=()=>{
-        var crt=[...cart.cart];
-        crt.push({
-            id:props.key,
+        // var crt=[...cart.cart];
+        cart.addCartItem({
+            id:props.id,
             title:props.title,
             desc:props.desc,
             img:props.img,
@@ -18,11 +19,11 @@ const Card = (props) => {
             area:props.area,
             agent:props.agent,
             price:props.price,
-            bedroom:props.bedroom,
+            bedroom:props.bedrooms,
             amenity:props.amenity,
             available:props.date
         })
-        cart.setCart(crt);
+        // cart.setCart([...crt]); 
         setDisable(!disable);
     }
 

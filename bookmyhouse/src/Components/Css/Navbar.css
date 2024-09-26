@@ -43,6 +43,9 @@
     transition: all 0.3s ease;
 }
 
+.navbar .close{
+    display: none;
+}
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     
@@ -55,11 +58,15 @@
         background-color: #333;
         flex-direction: column;
         align-items: center;
-        width: 50%;
-        transform: translateX(100%);
+        width: 100%;
+        transform: translateX(110%);
         transition: transform 0.5s ease-in;
+        color:#f4b41a;
     }
 
+    .navbar .close{
+        display: block;
+    }
     .navbar .nav-links li {
         margin: 20px 0;
     }

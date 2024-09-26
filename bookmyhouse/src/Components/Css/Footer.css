@@ -1,0 +1,117 @@
+/* General Body Styling */
+
+  /* Footer Styling */
+  footer {
+    display: block;
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  /* Footer Section Styling */
+  .footer-section {
+    flex: 1;
+    min-width: 220px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  
+  /* About Section */
+  .footer-section.about p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  /* Quick Links */
+  .footer-section.links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section.links ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section.links ul li a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+  
+  .footer-section.links ul li a:hover {
+    color: #fff;
+  }
+  
+  /* Contact Section */
+  .footer-section.contact ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section.contact ul li {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section.contact ul li i {
+    margin-right: 10px;
+    color: #aaa;
+  }
+  
+  /* Social Media Icons */
+  .footer-section.social .social-icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .footer-section.social .social-icons a {
+    color: #aaa;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+  }
+  
+  .footer-section.social .social-icons a:hover {
+    color: #fff;
+  }
+  
+  /* Footer Bottom */
+  .footer-bottom {
+    background-color: #222;
+    padding: 10px 0;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.85rem;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-container {
+        display: block;
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .footer-section {
+      margin-bottom: 30px;
+    }
+  }
+  
